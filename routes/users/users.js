@@ -22,15 +22,15 @@ router.get('/', middleWareAuth,(req, res)=> {
 
 router.get('/getProfile/:authToken',(req, res) => {
     const response = jwtHelper.verifyJWTTokens(req.params.authToken);
-    if(response.success){
+    if(response.getSuccess){
         Users
-            .find({email : response.username})
+            .find({email : response.getData.username})
             .then((user) => {
                 //TODO REMOVE SCHEMA MODEL
                 res.send(new ResponseEntity(user,true,'Query successfully executed.'))
             })
             .catch((error) => res.status(500).send(new ResponseEntity('N/A',false,error.message)))
-    }else res.status(500).send(new ResponseEntity('N/A',false,response.message))
+    }else res.status(500).send(new ResponseEntity('N/A',false,response.getMessage))
 
 });
 

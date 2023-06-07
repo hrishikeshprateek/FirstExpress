@@ -1,20 +1,20 @@
 class ResponseEntity {
-    get data() {
-        return this._data;
+    get getData() {
+        return this.data;
     }
 
-    get success() {
-        return this._success;
+    get getSuccess() {
+        return this.success;
     }
 
-    get message() {
-        return this._message;
+    get getMessage() {
+        return this.message;
     }
 
     constructor(data,success, message) {
-        this._data = data;
-        this._success = success;
-        this._message = message;
+        this.data = data;
+        this.success = success;
+        this.message = message;
     }
 
 
