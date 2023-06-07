@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../../model/user');
 const jwtHelper = require('../../jwt/helper/JwtHelper')
+const ResponseEntity = require("../../model/ResponseEntity");
 
 const router = express.Router();
 

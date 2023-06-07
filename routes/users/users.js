@@ -18,6 +18,11 @@ router.get('/', middleWareAuth,(req, res)=> {
 
 });
 
+router.get('/getProfile/:authToken',(req, res) => {
+    const token = req.params.authToken
+
+});
+
 router.post("/post",middleWareAuth, (req, resp) =>{
   resp.send(req.body)
 });
