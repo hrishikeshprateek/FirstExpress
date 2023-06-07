@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../../db')
-const Users = require("../../model/user");
+const Users = require("../../schema/user");
 const middleWareAuth = require('../../jwt/middleware/auth')
+const jwtHelper = require('../../jwt/helper/JwtHelper')
+const ResponseEntity = require("../../model/ResponseEntity");
 
 /* GET users listing. */
 router.get('/', middleWareAuth,(req, res)=> {
@@ -19,7 +21,16 @@ router.get('/', middleWareAuth,(req, res)=> {
 });
 
 router.get('/getProfile/:authToken',(req, res) => {
-    const token = req.params.authToken
+    const response = jwtHelper.verifyJWTTokens(req.params.authToken);
+    if(response.success){
+        Users
+            .find({email : response.username})
+            .then((user) => {
+                //TODO REMOVE SCHEMA MODEL
+                res.send(new ResponseEntity(user,true,'Query successfully executed.'))
+            })
+            .catch((error) => res.status(500).send(new ResponseEntity('N/A',false,error.message)))
+    }else res.status(500).send(new ResponseEntity('N/A',false,response.message))
 
 });
 
