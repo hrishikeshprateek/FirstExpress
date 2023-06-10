@@ -13,6 +13,10 @@ router.get('/menu/getAll', (req, res) => {
     publicDataHelper.getAllMenuItems(req.query.size,res)
 })
 
+router.get('/post',(req, res) =>{
+    res.send('hi rom post')
+})
+
 router.get('/menu/categories',(req, res) =>{
     publicDataHelper.getAllCategories(res)
 })
