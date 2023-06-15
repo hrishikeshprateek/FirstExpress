@@ -16,7 +16,7 @@ router.get('/post',(req, res) =>{
 })
 
 router.get('/menu/categories',(req, res) =>{
-    publicDataHelper.getAllCategories(res)
+    publicDataHelper.getAllCategories(res);
 })
 
 router.get('/menu/dealOfTheDay', (req, res) =>{
