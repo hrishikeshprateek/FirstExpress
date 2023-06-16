@@ -24,7 +24,7 @@ router.get('/menu/dealOfTheDay', (req, res) =>{
 })
 
 router.post('/logs/analyze', upload.single('logFile'), (req, res) => {
-    // Access the uploaded file using req.file
+    // Access the uploaded file using req.file hi
     const file = req.file
     console.log(req.file)
     if (file){
