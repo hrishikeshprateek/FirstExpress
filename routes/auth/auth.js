@@ -14,11 +14,11 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ email : username});
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).send(new ResponseEntity("[]",false,"No user record found !!"));
         }
 
         if (!await bcrypt.compare(password, user.password)) {
-            return res.status(401).json({ message: 'Invalid password' });
+            return res.status(401).send(new ResponseEntity("[]",false,"Invalid password !!"));
         }
 
         const token = jwtHelper.generateJWTTokens(user.email,'1h','ADMIN')
