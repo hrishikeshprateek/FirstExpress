@@ -1,3 +1,7 @@
+function processSmsLog(res, arrangeBy, path) {
+
+}
+
 const fs = require('fs');
 const time = require('../helpers/TimeHelper')
 
@@ -12,9 +16,10 @@ function processLog(res,arrangeBy,logFilePath) {
 
         // Parse the JSON data
         let logEntries;
+
         try {
             logEntries = JSON.parse(data);
-            //console.log(logEntries)
+            console.log(logEntries)
         } catch (err) {
             console.error('Error parsing log file:', err);
         }
@@ -154,5 +159,6 @@ function processLogPhoneSpecific(res, phoneNo, logFilePath) {
 
 module.exports = {
     processLog,
-    processLogPhoneSpecific
+    processLogPhoneSpecific,
+    processSmsLog
 }

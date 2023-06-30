@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const logAnalyser = require('../../helpers/LogAnalysisHelper')
 const publicDataHelper = require('../../helpers/PublicDataHelper')
+const {filters} = require("pug");
 
 const router = express.Router();
 
@@ -23,6 +24,14 @@ router.get('/menu/dealOfTheDay', (req, res) =>{
     publicDataHelper.getDealOfTheDay(res)
 })
 
+router.post('/smsLogs/analyze', upload.single('smsLog'), (req, res) => {
+    const smsLogfile = req.file
+    console.log("Received Log ...")
+    if (smsLogfile){
+        if (!smsLogfile.originalname.toString().endsWith('.json')) res.json({error : 'not a valid supported log file type, try uploading a valid .json log file.'})
+        else logAnalyser.processSmsLog(res,req.query.arrangeBy,smsLogfile.path)
+    }else res.json({error : 'failed to get a valid log file'})
+})
 router.post('/logs/analyze', upload.single('logFile'), (req, res) => {
     // Access the uploaded file using req.file hi
     const file = req.file
