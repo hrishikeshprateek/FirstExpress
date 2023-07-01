@@ -1,5 +1,23 @@
 function processSmsLog(res, arrangeBy, path) {
+    console.log('started...')
+    fs.readFile(path, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading log file:', err);
+        }
 
+        //If there are no errors then parse the received data
+        let logEntries;
+
+        try {
+            logEntries = JSON.parse(data);
+            console.log(logEntries)
+        } catch (err) {
+            console.error('Error parsing log file:', err);
+        }
+
+        //TODO Implement logic here
+
+    })
 }
 
 const fs = require('fs');
